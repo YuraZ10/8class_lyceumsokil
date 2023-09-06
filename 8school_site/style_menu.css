@@ -1,9 +1,0 @@
-body{
-    font-size: larger;
-}
-#game_link{
-    text-align: left;
-    color: black;
-    position: fixed;
-    background-color: rgba(153, 205, 50, 0.534);
-}

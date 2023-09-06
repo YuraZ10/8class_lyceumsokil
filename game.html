@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="style_menu.css" rel="stylesheet" type="text/css">
+        <link href="general_style.css" rel="stylesheet" type="text/css">
+        <title>Головна</title>
+    </head>
+    <body>
+        <h1>ВІДГАДАЙ ЧИСЛО</h1>
+        <p align="center">ВІДГАДАЙ ЧИСЛО ВІД 1 ДО 100</p>
+
+        <div id="button_sg">
+        <button onclick="startGame()">ПОЧАТИ ГРУ</button>
+        </div>
+
+        <div id="game">
+        <label>
+            <input type="text" name="guess" placeholder="Введіть число:">
+            <br>
+            <br>
+        </label>
+        </div>
+        <div id="button_cn">
+        <button onclick="checkNumber()">ПЕРЕВІРИТИ</button>
+        </div>
+
+        <h1 id="bigger">ЗАГАДАНЕ ЧИСЛО БІЛЬШЕ!</h1>
+        <h1 id="smaller">ЗАГАДАНЕ ЧИСЛО МЕНШЕ!</h1>
+        <h1 id="win">ВИ ВГАДАЛИ ЧИСЛО!</h1>
+
+        <h3 id="attempts"></h3>
+
+        <div id="button_rg">
+        <button onclick="startGame()">ПОЧАТИ ИГРУ</button>
+        </div>
+        <br>
+        <div id="mini_menu">
+            <a href="index.html">На головну</a><br>
+            <a href="index_timetable.html">Розклад уроків</a><br>
+            <a href="index_teachers.html">ПІБ вчителей</a><br>
+            <a href="index_classmates.html">Імена одноксласників</a>
+        </div>
+
+        <script>
+        let button_sg = document.getElementById('button_sg');
+        let game = document.getElementById('game');
+        let button_cn = document.getElementById('button_cn');
+        let attempts_text = document.getElementById('attempts');
+        let button_rg = document.getElementById('button_rg');
+
+        let bigger = document.getElementById('bigger');
+        let smaller = document.getElementById('smaller');
+        let win = document.getElementById('win');
+
+        let number;
+        let guess;
+        var attempts;
+
+        function startGame(){
+            number = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            alert(number)
+
+            game.style.display = 'block';
+            button_cn.style.display = 'block';
+            button_sg.style.display = 'none';
+            attempts_text.style.display = 'none';
+            button_rg.style.display = 'none';
+            bigger.style.display = 'none';
+            smaller.style.display = 'none';
+            win.style.display = 'none';
+        }
+
+        function checkNumber(){
+            guess = Number(document.getElementsByName('guess')[0].value);
+            if (guess < number){
+            bigger.style.display = 'block';
+            smaller.style.display = 'none';
+            win.style.display = 'none';
+            attempts++;
+            }
+            else if (guess > number){
+            smaller.style.display = 'block';
+            bigger.style.display = 'none';
+            win.style.display = 'none';
+            attempts++;
+            }
+            else {
+            win.style.display = 'block';
+            bigger.style.display = 'none';
+            smaller.style.display = 'none';
+            button_rg.style.display = 'block';
+            button_cn.style.display = 'none';
+            attempts++;
+            attempts_text.style.display = 'block';
+            attempts_text.textContent = `Ви вгадали число за ${attempts} спроб.`;
+            }
+        }
+        </script>
+    </body>
+</html>
